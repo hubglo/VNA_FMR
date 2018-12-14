@@ -39,6 +39,7 @@ try:
     values=inst.query("CALCulate:DATA? FDATA")
 
     inst.close
+    rm.close
 
     dane=[float(i) for i in values[:-1].split(',')]
 
