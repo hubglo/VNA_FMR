@@ -21,7 +21,7 @@ try:
     # print(inst.query("DISPlay:WINDow1:CATalog?"))
 
     inst.write("CALCulate:PARameter:SELect 'CH1_S11_1'")
-
+    
 
     inst.write("SENSe1:SWEep:POIN 10")
 
@@ -37,6 +37,8 @@ try:
 
     complex_values_str=inst.query("CALCulate:DATA? SDATA") #'Corrected, Complex Meas
     values=inst.query("CALCulate:DATA? FDATA")
+
+    inst.close
 
     dane=[float(i) for i in values[:-1].split(',')]
 
