@@ -25,12 +25,16 @@ class Gaussmeter:
        self. inst.write("ANALOG 3,1,0.000E-3,00.000E-3,"+str(volt)+",10")
         
     def ReadField(self):
-        return self.inst.query("RDGFIELD?")
+        temp = self.inst.query("RDGFIELD?")
         time.sleep(0.05)
+        return temp
+        
 
 gm=Gaussmeter()
 gm.Setup()
 
+
 print(gm.ReadField())
+
 
 del gm
