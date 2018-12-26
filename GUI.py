@@ -24,6 +24,7 @@ class VNA_FMR(tk.Frame):
         
 if __name__ == "__main__":
     root = tk.Tk()
+    root.wm_title("VNA-FMR")
     main = VNA_FMR(root)
     main.pack(side="top", fill="both", expand=True)
     root.mainloop()
