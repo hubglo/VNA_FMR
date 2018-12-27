@@ -1,10 +1,8 @@
 import visa
-import time
-
 
 class Gaussmeter:
     def __init__(self):
-        address = 'TCPIP0::ifm118.ifmpan.poznan.pl::gpib0,12::INSTR'
+        address = 'TCPIP0::150.254.221.118::gpib0,12::INSTR'
         self.rm = visa.ResourceManager()
         self.inst = self.rm.open_resource(address)
 
@@ -25,16 +23,10 @@ class Gaussmeter:
        self. inst.write("ANALOG 3,1,0.000E-3,00.000E-3,"+str(volt)+",10")
         
     def ReadField(self):
-        temp = self.inst.query("RDGFIELD?")
-        time.sleep(0.05)
-        return temp
+        return float(self.inst.query("RDGFIELD?"))
         
-
-gm=Gaussmeter()
-gm.Setup()
-
-
-print(gm.ReadField())
-
-
-del gm
+if __name__ == "__main__":
+    gm=Gaussmeter()
+    gm.Setup()
+    print(gm.ReadField())
+    del gm
