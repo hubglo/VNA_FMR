@@ -5,11 +5,13 @@ from matplotlib.figure import Figure
 
 import numpy as np
 
-EntriesDict={"StartField":0.0,
-            "EndField":14000,
-            "FieldStep":1000,
-            "MagnEntry":1000,
-            "gEntry":2
+EntriesDict={
+            "Effective magnetization":1000,
+            "g-factor":2,
+            "Start field":0.0,
+            "End field":14000,
+            "Field step":1000,
+            "Field span":1000
             }
 
 class KittelPlotter:
@@ -77,8 +79,8 @@ class KittelPlotter:
 
     def plotKittel(self):
         
-        H = np.arange(float(self.entries["StartField"].get()),float(self.entries["EndField"].get()),float(self.entries["FieldStep"].get()))
-        f = float(self.entries["gEntry"].get()) * np.sqrt((H + 4 * np.pi * float(self.entries["MagnEntry"].get())) + H )
+        H = np.arange(float(self.entries["Start field"].get()),float(self.entries["End field"].get()),float(self.entries["Field step"].get()))
+        f = float(self.entries["g-factor"].get()) * np.sqrt((H + 4 * np.pi * float(self.entries["Effective magnetization"].get())) + H )
         self.dane.append(H)
         self.dane.append(f)
         # print(self.MagnEntry.get())
