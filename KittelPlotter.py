@@ -17,20 +17,25 @@ EntriesDict={
 class KittelPlotter:
     
     def __init__(self,parent):
-        tl = tk.Toplevel(parent)
+        self.tl = tk.Toplevel(parent)
 
+        self.parent=parent
+        
         self.dane=[]        
 
-        tl.wm_title("Window Kittel")
+    # "Wyłącza" okno root. Nie można go kontrolować
+        self.tl.grab_set()
+
+        self.tl.wm_title("Window Kittel")
         # l = tk.Label(tl, text="This is window #%s" % self.counter)
-        l = tk.Label(tl, text="Prepare measurement points")
+        l = tk.Label(self.tl, text="Prepare measurement points")
         # l.pack(side="top", fill="both", expand=True, padx=100, pady=100)
         l.pack()
 
-        containerLeft=tk.Frame(tl)
+        containerLeft=tk.Frame(self.tl)
         containerLeft.pack(side="left")
 
-        containerRight=tk.Frame(tl)
+        containerRight=tk.Frame(self.tl)
         containerRight.pack(side="left")
 
         PlotButton= tk.Button(containerLeft, text="Plot",
@@ -75,6 +80,14 @@ class KittelPlotter:
         toolbar = NavigationToolbar2Tk(self.canvas, containerRight)
         toolbar.update()
         self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
+        
+        # self.tl.protocol("WM_DELETE_WINDOW", self.close_window)
+
+
+    # def close_window(self):
+    #     self.parent.show()
+    #     self.tl.destroy()
 
 
     def plotKittel(self):
